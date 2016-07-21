@@ -1,0 +1,30 @@
+<div>
+    <h2>{{repo.name}}</h2> {{ error }}
+</div>
+
+<h3>Number of Open Issues: {{repo.open_issues_count}}</h3>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Issue Number</th>
+            <th>Added by</th>
+            <th>Title</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="issue in issues | orderBy:repoSortOrder">
+            <td>{{issue.number}}</td>
+            <td><a href="#/user/{{issue.user.login}}">{{issue.user.login}}</a></td>
+            <td>{{issue.title}}</td>
+            <td>{{issue.closed_at == null ? "Open" : "Closed"}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<br/>
+<br/>
+<a href="#/main">Back to search</a>
+<a href="#/user/{{repo.owner.login}}">Back to user</a>
